@@ -11,7 +11,7 @@ class NeuralNetwork:
 
     def predict(self, a):
         for w, b in zip(self.weights, self.biases):
-            a = self.activation(np.matmul(w, a) + b)
+            a = self.activation(np.matmul(w, a) + b, 'sigmoid')
         return a
 
     def get_accuracy(self, images, labels):
@@ -21,5 +21,8 @@ class NeuralNetwork:
         return num_correct, len(images), (num_correct/len(images)*100)
 
     @staticmethod
-    def activation(x):
-        return 1/(1+np.exp(-x))
+    def activation(x, act_func):
+        if act_func == 'relu':
+            return np.maximum(x, np.zeros(x.shape))
+        elif act_func == 'sigmoid':
+            return 1/(1+np.exp(-x))
