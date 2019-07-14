@@ -10,11 +10,7 @@ layer_sizes = (training_images.shape[1], 5, 10)
 
 net = nn.NeuralNetwork(layer_sizes)
 
-x = np.ones((layer_sizes[0], 1))
+num_correct, num_total, num_accuracy = net.get_accuracy(
+    training_images, training_labels)
 
-net.train(training_images, training_labels)
-
-# num_correct, num_total, num_accuracy = net.get_accuracy(
-#     training_images, training_labels)
-
-# print('{0}/{1} accuracy: {2}%'.format(num_correct, num_total, num_accuracy))
+print('{0}/{1} accuracy: {2}%'.format(num_correct, num_total, num_accuracy))
