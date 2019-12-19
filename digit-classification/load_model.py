@@ -4,6 +4,8 @@ from sklearn.model_selection import train_test_split
 
 from joblib import load
 
+filename = 'example_model.joblib'
+
 digits = datasets.load_digits()
 
 _, axes = plt.subplots(2, 4)
@@ -17,12 +19,10 @@ for ax, (image, label) in zip(axes[0, :], images_labels[:4]):
 n_samples = len(digits.images)
 data = digits.images.reshape((n_samples, -1))
 
-classifier = svm.SVC(gamma=0.001)
-
 x_train, x_test, y_train, y_test = train_test_split(
     data, digits.target, test_size=0.5, shuffle=False)
 
-classifier = load('digit_model.joblib')
+classifier = load(filename)
 
 predicted = classifier.predict(x_test)
 

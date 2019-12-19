@@ -4,6 +4,8 @@ from sklearn.model_selection import train_test_split
 
 from joblib import dump
 
+filename = 'example_model.joblib'
+
 digits = datasets.load_digits()
 
 images_labels = list(zip(digits.images, digits.target))
@@ -18,4 +20,6 @@ x_train, x_test, y_train, y_test = train_test_split(
 
 classifier.fit(x_train, y_train)
 
-dump(classifier, 'digit_model.joblib')
+dump(classifier, filename)
+
+print('Model saved as %s' % filename)
